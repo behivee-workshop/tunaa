@@ -18,6 +18,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         NSApp.setActivationPolicy(.accessory)
+        NSApp.activate(ignoringOtherApps: true)
 
         nowPlaying = NowPlayingManager(player: player)
         player.onEnded = { [weak player] in player?.playNext() }
@@ -26,7 +27,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         statusItem.button?.image = Self.statusIcon
         statusItem.button?.action = #selector(statusItemClicked)
         statusItem.button?.target = self
-        statusItem.button?.sendAction(on: [.leftMouseUp, .rightMouseUp])
+        statusItem.button?.sendAction(on: [.leftMouseDown, .rightMouseUp])
 
         // A plain borderless panel instead of NSPopover: no arrow to keep aligned,
         // and we position it ourselves (half-screen, pinned top-right) with no

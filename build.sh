@@ -1,6 +1,6 @@
 #!/bin/bash
 # Builds Tunaa and packages it as a proper .app bundle (needed for WKWebView's
-# media pipeline to work reliably) with the icon from design/appicon-idea-OK.png.
+# media pipeline to work reliably) with the icon from design/appicon.png.
 set -euo pipefail
 cd "$(dirname "$0")"
 
@@ -15,7 +15,7 @@ cp -R Sources/Tunaa/Icons "$APP/Contents/Resources/Icons"
 
 ICONSET="$APP/Contents/Resources/AppIcon.iconset"
 mkdir -p "$ICONSET"
-SRC=design/appicon-idea-OK.png
+SRC=design/appicon.png
 for size in 16 32 128 256 512; do
   sips -z $size $size "$SRC" --out "$ICONSET/icon_${size}x${size}.png" >/dev/null
   double=$((size * 2))
